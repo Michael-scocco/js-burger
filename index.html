@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-burger</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Create your burger</h1>
+        </header>
+        <main>
+            <input id="burger-name" name="burger-name" type="text" placeholder="Nome del panino">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>
+                    <img src="img/cheese.svg" width="20px">
+                    <input id="formaggio" class="ingredienti" type="checkbox" data-prezzo="2">
+                    Formaggio
+                </li>
+                <li>
+                    <img src="img/fried-egg.svg" width="20px">
+                    <input id="uova" class="ingredienti" type="checkbox" data-prezzo="3">
+                    Uova
+                </li>
+                <li>
+                    <img src="img/mustard.svg" width="20px">
+                    <input id="mostarda" class="ingredienti" type="checkbox" data-prezzo="4">
+                    Mostarda
+                </li>
+                <li>
+                    <img src="img/tomato.svg" width="20px">
+                    <input id="pomodoro" class="ingredienti" type="checkbox" data-prezzo="1">
+                    Pomodoro
+                </li>
+                <li>
+                    <img src="img/lettuce.svg" width="20px">
+                    <input id="lattuga" class="ingredienti" type="checkbox" data-prezzo="6">
+                    Lattuga
+                </li>
+                <li>
+                    <img src="img/ketchup.svg" width="20px">
+                    <input id="ketchup" class="ingredienti" type="checkbox" data-prezzo="1">
+                    Ketchup
+                </li>
+            </ul>
+            <div>
+                <label for="coupon">Discount coupon</label>
+                <input id="burger-coupon" name="coupon" type="text" placeholder="Coupon">
+            </div>
+            <button id="calcolatore">Calcola prezzo</button>
+        </main>
+        <footer>
+            <span>
+                Prezzo
+            </span>
+            <span>
+                <span>
+                    € <!-- in questo modo separo il E. perchè non lo vado a scrivere sempre, tanto lui rimane stabile-->
+                </span>
+                <span id="prezzo-da-stampare">
+                    <!-- invece qui il prezzo varia sempre, e quindi lo vado a prendere in js, tramite il getElementId, di conseguenza non mi interessa scrivere qui il prezzo, perchè lo andrò a stampare di volta in volta, tramite la variante del getElementId -->
+                </span>
+            </span>
+        </footer>
+    </div>
 
-        <script scr="js/script.js"></script>
-    </body>
+    <script src="js/script.js"></script>
+</body>
 </html>
