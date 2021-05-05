@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #fdf5e4;
+}
+main{
+    background-color: white;
+    height: 100vh;
+    overflow: auto;
+}
+.container{
+    width: 60%;
+}
+
+.structure-container{
+    width: 90%;
+    margin: auto;
+    background-color: white;
+}
+
+header{
+    height: 150px;
+    background-color: #fcbb40;
+    position: relative;
+}
+header > h1{
+    width: 90%;
+    margin: auto;
+}
+h1{
+    padding-top: 80px;
+    font-size: 35px;
+}
+.image{
+    position: absolute;
+    right: -115px;
+    bottom: -61px;
+}
+/******************
+name burger
+******************/
+.name-burger{
+    border: none;
+    outline: none;
+    font-size: 30px;
+    margin-top: 35px;
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #bb3b59;
+    height: 200px;
+}
+footer > h3, footer > span{
+    width: 90%;
+    margin: auto;
+
+}

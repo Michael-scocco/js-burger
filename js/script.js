@@ -3,8 +3,106 @@
 // cercare di riprodurre il calcolo del prezzo del panino che parte da 10E,
 // a cui vanno aggiunti i costi per gli ingredienti supplementari
 // e va applicato un eventuale sconto in base al coupon.
+/*
+Il programma dovrà consentire di calcolare il prezzo del panino selezionando o
+deselezionando gli ingredienti proposti.
+Consigli del giorno:
+Create inizialmente un html base con gli elementi minimi necessari al funzionamento,
+passate poi alla parte JS ragionando come sempre a step.
+Prima la logica in italiano e poi traduciamo in codice. console.log() è nostro amico.
+Quando tutto funziona passate alla parte visiva lavorando al css.
+*/
+
+// al click si dovrà calcolare tutti gli ingredienti calcolati
+document.getElementById('calcola').addEventListener('click', function () {
+
+    // il panino deve essere incrementato ad ogni selezione(input check)
+    // per prendere tutti gli input di tipo checkbox usare querySelectorAll
+    // quindi creo una variabile che raccoglie tutti gli input
+    var check = document.querySelectorAll("input[type='checkbox']");
+    console.log(check);
+
+    var sommaIngredienti = null;
+    // quindi guardando ul check come un array di contenuti valore, creo un ciclo for,
+    // e vado a sommare ogni singolo ingrediente, verificando se è vero o falso con l'attributo .checked
+    for (var i = 0; i < check.length; i++) {
+        var singoloIngrediente = check[i];
+
+        // se singoloIngrediente è stato checcato, ed è vero allora sommo ogni singoloIngrediente, con il data-price preso
+        if (singoloIngrediente.checked) {
+            sommaIngredienti += Number(singoloIngrediente.getAttribute('data-price'))
+        }
+    }
+    console.log(sommaIngredienti);
+
+    //adesso che ho le somme di tutti gli ingredienti presi li vado a sommare con il
+    //prezzo base  del panino che vado ad inizializzare
+
+    //definisco prezzo Base
+    var burgerPrice = 5.99;
+    console.log(burgerPrice);
+
+    //sommo per avere il totale del panino
+    var totalBurger = burgerPrice + sommaIngredienti;
+    console.log(totalBurger);
+
+    //ora devo creare un array di sconti dove devo vederre se sono inclusi o meno
+    var coupons = [
+        '123456ABCDEF',
+        '7891011GHILMN',
+        '121314151617OPQRST',
+        '181920212223UVWXYZ'
+    ];
+
+    var messaggioPrezzo = document.getElementById('price-total');
+    var userCoupon = document.getElementById('sales').value
+    for (var i = 0; i < coupons.length; i++) {
+        var coupon = coupons[i];
+
+        if (coupons.includes(userCoupon)) {
+            var sconto20 = totalBurger -(totalBurger * 0.20);
+            console.log('c\'è lo sconto');sconto20
+            messaggioPrezzo.innerHTML = sconto20.toFixed(2)+'€';
+            break;
+
+        }else {
+            console.log('non c\'è lo sconto');sconto20
+            messaggioPrezzo.innerHTML = totalBurger;
+            break;
+        }
+        console.log(sconto20, totalBurger);
+    }
+})
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 var prezzoBase;//prezzo base panino ma solo dichiarato
 
 var calcolatoreBtn = document.getElementById('calcolatore');
@@ -68,12 +166,12 @@ calcolatoreBtn.addEventListener('click', function() {//click è un parametro per
 //punto 4, facciamo in modo, che quando vado nelle immagini, attivo il click anke su di loro, tutto questo deve andare fuori dallo stalker ke usavamo prima ma dobbiamo creare un altro grande occhio ke osserverà sempre se i li vengono cliccati.
     //punto 4.1 dove andiamo in HTML a prendere un eventuale tag, che ci fa fare l'evento click alle immagini?Sono gli li.
         // ps, cerchiamo un modo di non ripetere il codice sei volte, dato ke si sono sei caselleSelezione, quindi andiamo a leggere tutti i li.
-    var listaImmagini = document.getElementsByTagName('tagName')('li');//sto prendendo tutti I TAG li, essendo una lista è come se fosse un array, quindi devo andarmi a prendere un iessimo elemento e lo faccio con il for.
-    for (var i = 0; i < lis.length; i++)
+    var listaImmagini = document.getElementsByTagName('li');//sto prendendo tutti I TAG li, essendo una lista è come se fosse un array, quindi devo andarmi a prendere un iessimo elemento e lo faccio con il for.
+        for (var i = 0; i < listaImmagini.length; i++){
 
         var listaImmagine = listaImmagini[i]; //quindi mi creo la mia varibile per cercare ogni singolo elemento all'interno
 
-        listaImmagine.document.addEventListener('click', function() {// in questo modo se io vado a loggare con console.log('listaImmagine click'); mi farà vedere che se clicco qualunque parte della li mi crea un evento click;
+        listaImmagine.addEventListener('click', function() {// in questo modo se io vado a loggare con console.log('listaImmagine click'); mi farà vedere che se clicco qualunque parte della li mi crea un evento click;
             // ora in questo momento siamo in un li generico, per capire esattamte in quale li, siamo dobbiamo usare la parola magica (this) questa parola è davvero magica, è usata in tantissime forme, ma in questo caso la usiamo per far in modo ke mi rappresenta l'elemento all'interno della lista che l'utente mi ha cliccato, esempio se l'utente mi clicca su uovo, mi compare l'uovo
             //.children, è una ulteriore proprietà che ci permette di accedere agli elementi figli dell'elemento selezionato, se io adesso vado a cliccare nell'immagine in HTML, nel console.log(), mi farà vedere sia l'immagine ke l'input, perchè sono entrambi figli dell'elemento selezionato li, di conseguenza io voglio solo che mi prende il figlio input, allora a children gli vado a mettere [1], perchè img a valore 0, dato che dobbiamo ricordarci ke array, parte da zero, si anche questi due figli fanno parte di un array, quindi input è il secondo figlio caon valore indice 1
             var listaImmagineCliccata = this;// è elemento che l'utente a cliccato, es: se l'utente a cliccato su uova, allora il mio intero li è this
@@ -84,10 +182,10 @@ calcolatoreBtn.addEventListener('click', function() {//click è un parametro per
 
             listaImmagineFiglo.checked = !listaImmagineFiglo.checked;// vuol dire: se clicco su listaImmagineFiglo.checked è uguale a dire l'incotrario di(con ! vuol dire incontrario di..., cioè ! trasforma il vero in un falso ed un falso in un vero)!listaImmagineFiglo.checked, quindi se era cliccata mi diventa non cliccata e viceversa, cioè tutto questo mi fa mettere e togliere la spunta
 
-        });
-    }
+        });//addEventListener
 
-
+    }//for
+*/
 
 
 
